@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <stack>
 #include <cmath>
@@ -54,8 +55,8 @@ public:
         return (int)(value/this->scale) * scale;
     }
 
-    float relativeError(float x1, float x2){
-        return abs(x1-x2)/x1;
+    float relativeError(float current, float previous){
+        return truncate(abs(current-previous)/current);
     }
 
     void secantAlgo(float x1, float x2, int power, int limit){
@@ -69,7 +70,7 @@ public:
         fx1 = truncate(fx1);
         fx2 = truncate(fx2);
         secantData i1(x1, fx1, 0, 0, 0);
-        secantData i2(x2, fx2, x1, fx1, 0);
+        secantData i2(x2, fx2, x1, fx1, relativeError(x2, x1));
         int current = 0;
         secantAlgoRec(x2, fx2, x1, fx1, power, limit, current);
         secantStack.push(i2);
@@ -87,14 +88,21 @@ public:
         }
         fxNow = truncate(fxNow);
         secantAlgoRec(xNow, fxNow, x, fx, power, limit, current+1);
-        secantData temp(xNow, fxNow, x, fx, 0);
+        secantData temp(xNow, fxNow, x, fx, relativeError(xNow, x));
         this->secantStack.push(temp);
     }
 
     void printSecData(){
+        int base = 10;
+        char fill = ' ';
         while(!this->secantStack.empty()){
             secantData &curr = this->secantStack.top();
-            cout << curr.x << "\t" << curr.fx << "\t" << curr.xPrev << "\t" << curr.fxPrev << "\t" << curr.error << endl;
+            cout << setw(base) << setfill(fill) << curr.x;
+            cout << setw(base) << setfill(fill) << curr.fx;
+            cout << setw(base) << setfill(fill) << curr.xPrev;
+            cout << setw(base) << setfill(fill) << curr.fxPrev;
+            cout << setw(base) << setfill(fill) << curr.error << "";
+            cout << endl;
             this->secantStack.pop();
         }
     }
