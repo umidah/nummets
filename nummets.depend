@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1580388613 source:c:\users\ajtpa\documents\github\nummets\main.cpp
+	"nummets.h"
+
+1580388637 c:\users\ajtpa\documents\github\nummets\nummets.h
+	<iostream>
+	<vector>
+	<stack>
+	<cmath>
+
