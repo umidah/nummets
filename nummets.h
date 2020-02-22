@@ -109,7 +109,7 @@ public:
 
     void secantAlgoRec(float x, float fx, float xPrev, float fxPrev, int power, int limit, int current){
         if(limit == current) return;
-        cout << "rec level " << current << endl;
+        //cout << "rec level " << current << endl;
         float xNow = x - ((fx * (x-xPrev))/(fx-fxPrev));
         xNow = truncate(xNow);
         float fxNow;
@@ -155,7 +155,7 @@ public:
 
     void otherAlgoRec(float x, float fx, float fxPrime, int power, int limit, int current){
         if(limit == current) return;
-        cout << "rec level " << current << endl;
+        //cout << "rec level " << current << endl;
         float xNow = x - (fx/fxPrime);
         xNow = truncate(xNow);
         float fxNow, fxPrimeNow;
