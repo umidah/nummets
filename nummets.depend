@@ -9,3 +9,13 @@
 	<stack>
 	<cmath>
 
+1580711190 source:c:\users\laptop\documents\nummets\main.cpp
+	"nummets.h"
+
+1580711218 c:\users\laptop\documents\nummets\nummets.h
+	<iostream>
+	<iomanip>
+	<vector>
+	<stack>
+	<cmath>
+
